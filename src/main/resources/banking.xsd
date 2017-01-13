@@ -1,0 +1,130 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://bank.bsr"
+           targetNamespace="http://bank.bsr" elementFormDefault="qualified">
+
+    <xs:element name="getLoginRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="authentication" type="tns:authenticator"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="getLoginResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="loginSuccess" type="xs:boolean"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getAccountRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="account" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getAccountResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="account" type="tns:account"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getOperationsRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="account" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getOperationsResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="operations" type="tns:operation" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="depositRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="account" type="xs:string"/>
+                <xs:element name="amount" type="xs:double"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="depositResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Success" type="xs:boolean"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="withdrawalRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="account" type="xs:string"/>
+                <xs:element name="amount" type="xs:double"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="withdrawalResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Success" type="xs:boolean"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="transferRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="from" type="xs:string"/>
+                <xs:element name="to" type="xs:string"/>
+                <xs:element name="amount" type="xs:double"/>
+                <xs:element name="title" type="xs:double"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="transferResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Success" type="xs:boolean"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="authenticator">
+        <xs:sequence>
+            <xs:element name="login" type="xs:string"/>
+            <xs:element name="password" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="account">
+        <xs:sequence>
+            <xs:element name="number" type="xs:string"/>
+            <xs:element name="saldo" type="xs:double"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="operation">
+        <xs:sequence>
+            <xs:element name="acc_number" type="xs:string"/>
+            <xs:element name="title" type="xs:string"/>
+            <xs:element name="type" type="xs:string"/>
+            <xs:element name="value" type="xs:double"/>
+            <xs:element name="saldo_after" type="xs:double"/>
+            <xs:element name="date" type="xs:date"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>
